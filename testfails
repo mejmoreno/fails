@@ -1,0 +1,640 @@
+/*#include <iostream>
+#include <string>
+using namespace std;
+void personnelLogin() {
+	struct {
+		int personnelNumber, choice, personnelAttendance = 0;
+	} personnelStructure;
+
+	cout << "\nPersonnel number: ";
+	cin >> personnelStructure.personnelNumber;
+
+	cout << "\n[1] Check in" << endl
+		<< "[2] View patient records" << endl
+		<< "[3] Add new patient record" << endl
+		<< "[4] View attendance record" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	cin >> personnelStructure.choice;
+
+	if (personnelStructure.choice == 1) {
+		personnelStructure.personnelAttendance++;
+	}
+}
+
+void patientLogin() {
+	struct {
+		string patientName, updateDetails, date;
+	} patientStructure;
+
+	cout << "\nPatient name: ";
+	cin >> patientStructure.patientName;
+
+	cout << "\n[1] Make an appointment" << endl
+		<< "[2] Update doctor" << endl
+		<< "[3] View medical expenses" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	int patientChoice;
+	cin >> patientChoice;
+
+	switch (patientChoice) {
+	case 1:
+		cout << "Enter date: ";
+			cin >> patientStructure.date;
+		cout << "Appointment made on " << date << endl;
+		break;
+	case 2:
+		cout << "Enter update details: ";
+			cin >> patientStructure.updateDetails;
+			cout << "\nExpect a response within this week thank you.";
+		break;
+	case 3:
+
+		break;
+	case 0:
+
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+int main() {
+	do {
+		int userLogin;
+		cout << "\nHospital's Management System" << endl
+			<< "\n[1] Personnel login"
+			<< "\n[2] Patient login" << endl
+			<< "Choice: ";
+		cin >> userLogin;
+
+		switch (userLogin) {
+		case 1:
+			personnelLogin();
+			break;
+		case 2:
+			patientLogin();
+			break;
+		default:
+			cout << "Invalid choice. Please select a valid option." << endl;
+			break;
+		}
+	} while (true);
+
+	return 0;
+}
+*/
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Patient {
+	string name, updateDetails, date;
+};
+
+void personnelLogin() {
+	struct {
+		int personnelNumber, choice, personnelAttendance = 0;
+	} personnelStructure;
+
+	cout << "\nPersonnel number: ";
+	cin >> personnelStructure.personnelNumber;
+
+	cout << "\n[1] Check in" << endl
+		<< "[2] View patient records" << endl
+		<< "[3] Add new patient record" << endl
+		<< "[4] View attendance record" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	cin >> personnelStructure.choice;
+		if (personnelStructure.choice == 1) {
+		personnelStructure.personnelAttendance++;
+	}
+}
+
+void patientLogin() {
+	struct Patient patient;
+
+	cout << "\nPatient name: ";
+	cin >> patient.name;
+
+	cout << "\n[1] Make an appointment" << endl
+		<< "[2] Update doctor" << endl
+		<< "[3] View/Pay medical expenses" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	int patientChoice;
+	cin >> patientChoice;
+
+	switch (patientChoice) {
+	case 1: {
+		cout << "Enter date: ";
+		cin >> patient.date;
+
+		cout << "Appointment made on " << patient.date << endl;
+		break;
+	}
+	case 2: {
+		cout << "Enter update details: ";
+		cin >> patient.updateDetails;
+
+		cout << "\nExpect a response within this week. Thank you." << endl;
+		break;
+	}
+	case 3:
+
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+int main() {
+	do {
+		int userLogin;
+		cout << "\nHospital's Management System" << endl
+			<< "\n[1] Personnel login"
+			<< "\n[2] Patient login" << endl
+			<< "Choice: ";
+		cin >> userLogin;
+
+		switch (userLogin) {
+		case 1:
+			personnelLogin();
+			break;
+		case 2:
+			patientLogin();
+			break;
+		default:
+			cout << "Invalid choice. Please select a valid option." << endl;
+			break;
+		}
+	} while (true);
+
+	return 0;
+}
+/*
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+const int maxPatients = 100;
+
+struct Patient {
+	string name;
+	string updateDetails;
+	string date;
+};
+
+Patient patients[maxPatients];
+int numPatients = 0;
+
+void personnelLogin() {
+	struct {
+		int personnelNumber, choice, personnelAttendance = 0;
+	} personnelStructure;
+
+	cout << "\nPersonnel number: ";
+	cin >> personnelStructure.personnelNumber;
+
+	cout << "\n[1] Check in" << endl
+		<< "[2] View patient records" << endl
+		<< "[3] Add new patient record" << endl
+		<< "[4] View attendance record" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	cin >> personnelStructure.choice;
+
+	switch (personnelStructure.choice) {
+	case 1:
+		personnelStructure.personnelAttendance++;
+		break;
+	case 2:
+		viewPatientRecords();
+		break;
+	case 3:
+		addNewPatientRecord();
+		break;
+	case 4:
+	
+		cout << "Attendance record not yet implemented." << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+void patientLogin() {
+	struct Patient patient;
+
+	cout << "\nPatient name: ";
+	cin >> patient.name;
+
+	cout << "\n[1] Make an appointment" << endl
+		<< "[2] Update doctor" << endl
+		<< "[3] View/Pay medical expenses" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	int patientChoice;
+	cin >> patientChoice;
+
+	switch (patientChoice) {
+	case 1: {
+		cout << "Enter date: ";
+		cin >> patient.date;
+
+		cout << "Appointment made on " << patient.date << endl;
+		break;
+	}
+	case 2: {
+		cout << "Enter update details: ";
+		cin >> patient.updateDetails;
+
+		cout << "\nExpect a response within this week. Thank you." << endl;
+		break;
+	}
+	case 3:
+		
+		cout << "View/Pay medical expenses not yet implemented." << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+void viewPatientRecords() {
+	if (numPatients == 0) {
+		cout << "No patient records found." << endl;
+		return;
+	};
+
+	
+	for (int i = 0; i < numPatients; i++) {
+		cout << "\nName: " << patients[i].name << endl;
+	}
+}
+
+void addNewPatientRecord() {
+	if (numPatients >= maxPatients) {
+		cout << "Maximum patient capacity reached." << endl;
+		return;
+	};
+
+	Patient newPatient;
+
+	cout << "\nEnter patient details:\n";
+	cout << "Name: ";
+	cin >> newPatient.name;
+	
+
+	patients[numPatients] = newPatient; 
+	numPatients++;
+	cout << "New patient record added successfully." << endl;
+}
+
+int main() {
+	do {
+		int userLogin;
+		cout << "\nHospital's Management System" << endl
+			<< "\n[1] Personnel login"
+			<< "\n[2] Patient login" << endl
+			<< "Choice: ";
+		cin >> userLogin;
+
+		switch (userLogin) {
+		case 1:
+			personnelLogin();
+			break;
+		case 2:
+			patientLogin();
+			break;
+
+		default:
+			cout << "Invalid choice. Please select a valid option." << endl;
+			break;
+		}
+	} while (true);
+
+	return 0;
+}
+
+
+int findPatientIndex(const string& name) {
+	for (int i = 0; i < numPatients; i++) {
+		if (patients[i].name == name) {
+			return i;
+		}
+	}
+	return -1; 
+}
+
+
+void updateDoctorRequest(const string& patientName) {
+	int patientIndex = findPatientIndex(patientName);
+	if (patientIndex == -1) {
+		cout << "Patient not found." << endl;
+		return;
+	}
+
+	cout << "Enter update details for " << patientName << ": ";
+	cin >> patients[patientIndex].updateDetails;
+
+	cout << "\nExpect a response within this week. Thank you." << endl;
+}
+
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+const int maxPatients = 100;
+
+struct Patient {
+	string name;
+	string updateDetails;
+	string date;
+};
+
+Patient patients[maxPatients];
+int numPatients = 0; 
+
+void personnelLogin() {
+	struct {
+		int personnelNumber, choice, personnelAttendance = 0;
+	} personnelStructure;
+
+	cout << "\nPersonnel number: ";
+	cin >> personnelStructure.personnelNumber;
+
+	cout << "\n[1] Check in" << endl
+		<< "[2] View patient records" << endl
+		<< "[3] Add new patient record" << endl
+		<< "[4] View attendance record" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	cin >> personnelStructure.choice;
+
+	switch (personnelStructure.choice) {
+	case 1:
+		personnelStructure.personnelAttendance++;
+		break;
+	case 2:
+		viewPatientRecords();
+		break;
+	case 3:
+		addNewPatientRecord();
+		break;
+	case 4:
+
+		cout << "Attendance record not yet implemented." << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+void patientLogin() {
+	struct Patient patient;
+
+	cout << "\nPatient name: ";
+	cin >> patient.name;
+
+	cout << "\n[1] Make an appointment" << endl
+		<< "[2] Update doctor" << endl
+		<< "[3] View/Pay medical expenses" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	int patientChoice;
+	cin >> patientChoice;
+
+	switch (patientChoice) {
+	case 1:
+		cout << "Enter date: ";
+		cin >> patient.date;
+		cout << "Appointment made on " << patient.date << endl;
+		break;
+	case 2:
+		cout << "Enter update details: ";
+		cin >> patient.updateDetails;
+		cout << "\nExpect a response within this week. Thank you." << endl;
+		break;
+	case 3:
+		cout << "View/Pay medical expenses not yet implemented." << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+void viewPatientRecords() {
+	if (numPatients == 0) {
+		cout << "No patient records found." << endl;
+		return;
+	}
+
+
+	for (int i = 0; i < numPatients; i++) {
+		cout << "\nName: " << patients[i].name << endl;
+
+	}
+}
+
+void addNewPatientRecord() {
+	if (numPatients >= maxPatients) {
+		cout << "Maximum patient capacity reached." << endl;
+		return;
+	}
+
+	Patient newPatient;
+	cout << "\nEnter patient details:\n";
+	cout << "Name: ";
+	cin >> newPatient.name;
+
+
+	patients[numPatients] = newPatient;
+	numPatients++;
+	cout << "New patient record added successfully." << endl;
+}
+
+int main() {
+	do {
+		int userLogin;
+		cout << "\nHospital's Management System" << endl
+			<< "\n[1] Personnel login"
+			<< "\n[2] Patient login" << endl
+			<< "Choice: ";
+		cin >> userLogin;
+
+		switch (userLogin) {
+		case 1:
+			personnelLogin();
+			break;
+		case 2:
+			patientLogin();
+			break;
+		default:
+			cout << "Invalid choice. Please select a valid option." << endl;
+			break;
+		}
+	} while (true);
+
+	return 0;
+}
+
+*/
+/*#include <iostream>
+#include <string>
+using namespace std;
+
+const int maxPatients = 100;
+
+struct Patient {
+	string name;
+	string updateDetails;
+	string date;
+};
+
+void personnelLogin() {
+	struct {
+		int personnelNumber, choice, personnelAttendance = 0;
+	} personnelStructure;
+
+	cout << "\nPersonnel number: ";
+	cin >> personnelStructure.personnelNumber;
+
+	cout << "\n[1] Check in" << endl
+		<< "[2] View patient records" << endl
+		<< "[3] Add new patient record" << endl
+		<< "[4] View attendance record" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+}
+	cin >> personnelStructure.choice;
+
+	switch (personnelStructure.choice) {
+	case 1:
+		personnelStructure.personnelAttendance++;
+		break;
+	case 2:
+			for (int i = 0; i < numPatients; i++) {
+				cout << "\nName: " << patients[i].name << endl;
+				return;
+			}
+			break;
+	case 3:
+		
+
+		Patient newPatient;
+		cout << "\nEnter patient details:\n";
+		cout << "Name: ";
+		cin >> newPatient.name;
+
+		patients[numPatients] = newPatient;
+		numPatients++;
+		cout << "New patient record added successfully." << endl;
+		break;
+	case 4:
+		cout << "" << personnelStructure.personnelAttendance << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+		}
+	}
+
+void patientLogin() {
+	struct Patient patient;
+
+	cout << "\nPatient name: ";
+	cin >> patient.name;
+
+	cout << "\n[1] Make an appointment" << endl
+		<< "[2] Update doctor" << endl
+		<< "[3] View/Pay medical expenses" << endl
+		<< "[0] Exit" << endl
+		<< "Choice: ";
+
+	int patientChoice;
+	cin >> patientChoice;
+
+	switch (patientChoice) {
+	case 1:
+		cout << "Enter date: ";
+		cin >> patient.date;
+		cout << "Appointment made on " << patient.date << endl;
+		break;
+	case 2:
+		cout << "Enter update details: ";
+		cin >> patient.updateDetails;
+		cout << "\nExpect a response within this week. Thank you." << endl;
+		break;
+	case 3:
+			cout << "View/Pay medical expenses not yet implemented." << endl;
+		break;
+	case 0:
+		exit(0);
+		break;
+	default:
+		cout << "Invalid choice. Please select a valid option." << endl;
+		break;
+	}
+}
+
+int main() {
+	do {
+		int userLogin;
+		cout << "\nHospital's Management System" << endl
+			<< "\n[1] Personnel login"
+			<< "\n[2] Patient login" << endl
+			<< "Choice: ";
+		cin >> userLogin;
+
+		switch (userLogin) {
+		case 1:
+			personnelLogin();
+			break;
+		case 2:
+			patientLogin();
+			break;
+		default:
+			cout << "Invalid choice. Please select a valid option." << endl;
+			break;
+		}
+	} while (true);
+
+	return 0;
+}
+*/
